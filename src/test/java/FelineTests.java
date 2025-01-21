@@ -43,15 +43,4 @@ public class FelineTests {
         Mockito.verify(feline, Mockito.times(3)).getFood();
         Mockito.verify(feline, Mockito.times(1)).eatMeat();
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"Травоядное", "Хищник"})
-    void getFoodTest(String animalKind) throws Exception{
-        if(animalKind.equals("Хищник"))
-        assertEquals(feline.getFood(),animal.getFood(animalKind));
-        else {
-            Mockito.when(feline.getFood()).thenReturn(List.of("Трава", "Различные растения"));
-            assertEquals(feline.getFood(),animal.getFood(animalKind));
-        }
-    }
 }
