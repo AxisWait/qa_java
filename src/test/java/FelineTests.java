@@ -17,8 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FelineTests {
     @Spy
     private Feline feline;
-    @Spy
-    private Animal animal;
 
     @Test
     void getKittensWithParamTest(){

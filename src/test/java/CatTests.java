@@ -19,11 +19,6 @@ public class CatTests {
     @InjectMocks
     private Cat cat;
 
-   /* @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }*/
-
     @Test
     void getSoundCatTest() {
         new Cat(felineMock);

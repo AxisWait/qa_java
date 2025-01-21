@@ -13,8 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,21 +22,18 @@ public class ParameterizedTests {
     private Feline feline;
     @Spy
     private Animal animal;
-    static Stream<Arguments> sexTestArguments() {
-        return Stream.of(
-                arguments("Самец", true),
-                arguments("Самка", false),
-                arguments("Чужой", false)
-        );
-    }
 
     @ParameterizedTest
-    @MethodSource("sexTestArguments")
-    public void doesHaveManeTest(String sex, boolean hasMane) throws Exception {
+    @ValueSource(strings = {"Самец", "Самка", "Оно"})
+    public void doesHaveManeTest(String sex) throws Exception {
         Lion lion = null;
         try {
             lion = new Lion(sex, feline);
-            assertEquals(hasMane, lion.doesHaveMane());
+            switch(sex) {
+                case "Самец": assertTrue(lion.doesHaveMane());
+                break;
+                case "Самка": assertFalse(lion.doesHaveMane());
+            }
         } catch (Exception e) {
             Exception exception =
                     assertThrows(Exception.class, () ->  new Lion(sex, feline));
