@@ -2,7 +2,7 @@ package com.example;
 
 import java.util.List;
 
-public class Animal {
+public abstract class Animal {
 
     public List<String> getFood(String animalKind) throws Exception {
         if ("Травоядное".equals(animalKind)) {
@@ -17,4 +17,6 @@ public class Animal {
     public String getFamily() {
         return "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
     }
+
+    public abstract List<String> getFood() throws Exception;
 }
